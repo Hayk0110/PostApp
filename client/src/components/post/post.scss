@@ -1,0 +1,35 @@
+.post {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #489e4e;
+  color: #fff;
+
+  .userInfo {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+
+    div {
+      .date {
+        font-size: 13px;
+        color: #d0d0d0;
+      }
+    }
+  }
+
+  .postTitle {
+    margin-left: 10px;
+    margin-bottom: 15px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .postText {
+    width: 800px;
+    text-align: center;
+    margin: 30px auto;
+  }
+}

@@ -1,0 +1,29 @@
+.dropDown {
+  position: relative;
+  top: 90px;
+  left: 580px;
+  width: 200px;
+  height: 125px;
+  border: 1px solid #489e4e;
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+
+  .arrowUp {
+    position: absolute;
+    top: -20px;
+    right: 87px;
+    border: 10px solid transparent;
+    border-bottom-color: #fff;
+  }
+
+  .btn {
+    width: 150px;
+    height: 40px;
+  }
+}

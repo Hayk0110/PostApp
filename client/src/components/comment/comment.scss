@@ -1,0 +1,69 @@
+.comment {
+  margin-left: 30px;
+  line-height: 20px;
+
+  .commentWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    margin: 20px 0;
+    padding: 20px 10px;
+
+    .commentUser {
+      display: flex;
+      gap: 10px;
+
+      .userIcon {
+        font-size: 40px;
+      }
+
+      div {
+        .username {
+          display: flex;
+
+          .userEmail {
+            font-size: 20px;
+          }
+
+          .rate {
+            width: 35px;
+            margin: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .star {
+              font-size: 17px;
+              color: orange;
+            }
+          }
+        }
+
+        .date {
+          font-size: 13px;
+          color: #d0d0d0;
+        }
+      }
+
+      .edit {
+        margin-left: auto;
+        cursor: pointer;
+      }
+    }
+
+    .commentContent {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 30px;
+      margin-top: 20px;
+
+      .commentInfo {
+        display: flex;
+        margin-right: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.commentEdit{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .editText {
+        display: block;
+        width: 360px;
+        height: 110px;
+        resize: none;
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 20px;
+        background: linear-gradient(45deg, #489e4e, #000);
+        color: white;
+      }
+}

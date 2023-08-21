@@ -1,0 +1,24 @@
+.errorPage {
+  height: 87vh;
+
+  .error {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .errorIcon {
+      color: #e1a026;
+      font-size: 150px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      p {
+        font-size: 30px;
+      }
+    }
+  }
+}
