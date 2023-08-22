@@ -5,7 +5,6 @@ export default class PostService {
         const url = `/post?category=${category}&sort=${sort}&date=${date}&page=${currentPage}&limit=2`
 
         if(author){
-            console.log("im here")
             url = url + `&author=${author}`
         }
 

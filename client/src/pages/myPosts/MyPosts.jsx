@@ -10,8 +10,6 @@ const MyPosts = () => {
   const { category, date, sort } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
-  console.log(user);
-
   useEffect(() => {
     dispatch(
       fetchPosts({ currentPage, category, date, sort, author: user.email })

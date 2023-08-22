@@ -17,7 +17,7 @@ module.exports = async function (req, res, next) {
         // author query
         if (author) {
             const postAuthor = await User.findOne({ email: author });
-            console.log(postAuthor)
+            
             if(postAuthor !== null){
                 req.queryParams.userId = postAuthor._id
             }
@@ -76,8 +76,6 @@ module.exports = async function (req, res, next) {
         }
 
         req.queryParams.sort = sort;
-
-        console.log(req.queryParams)
 
         return next()
 

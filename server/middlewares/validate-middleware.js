@@ -6,10 +6,6 @@ module.exports = function (errors, req, res, next) {
         const validation = errors.map((error) =>
             validationCases(error)
         )
-        // console.log("Custom Errors:");
-        // er.forEach(error => {
-        //     console.log(error);
-        // });
 
 
         next(validation)

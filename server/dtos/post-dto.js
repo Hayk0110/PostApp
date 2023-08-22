@@ -1,3 +1,6 @@
+const UserDto = require("./user-dto")
+const CommentDto = require("./comment-dto")
+
 module.exports = class PostDto{
     id;
     title;
@@ -7,13 +10,13 @@ module.exports = class PostDto{
     comments;
     createdAt;
 
-    constructor(model, comments = this.comments, user){
+    constructor(model){
         this.id = model._id;
         this.title = model.title;
         this.text = model.text;
         this.category = model.category
-        this.user = user;
-        this.comments = comments;
+        this.user = new UserDto(model.userId);
+        this.comments = model.comments.map(comment => new CommentDto(comment));
         this.createdAt = model.createdAt
     }
 }
