@@ -8,11 +8,12 @@ import { fetchPosts } from "../store/reducers/PostReducer";
 const MainContainer = () => {
   const { posts, loading } = useSelector((state) => state.posts);
   const { currentPage } = useSelector((state) => state.paginate);
-  const { category, date, sort } = useSelector((state) => state.filter);
+  const { category, date, sort, author } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
-    dispatch(fetchPosts({ currentPage, category, date, sort }));
+    dispatch(fetchPosts({ currentPage, category, date, sort, author }));
   }, []);
 
   return (

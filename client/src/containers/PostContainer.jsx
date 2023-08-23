@@ -9,7 +9,7 @@ import { asc, desc } from "../constants";
 import { sortBy } from "../helpers";
 import { addComment as addCommentRedux } from "../store/reducers/PostReducer";
 
-const PostContainer = ({ post, updatePool }) => {
+const PostContainer = ({ post}) => {
   const [input, setInput] = useState("");
   const [comments, setComments] = useState(post.comments);
   const [count, setCount] = useState(0);

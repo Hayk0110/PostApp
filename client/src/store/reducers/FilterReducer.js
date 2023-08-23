@@ -4,6 +4,7 @@ const initialState = {
     category: "all",
     date: "all",
     sort: "by date",
+    author: ""
 }
 
 const filterSlice = createSlice({
@@ -15,6 +16,9 @@ const filterSlice = createSlice({
             state.date = action.payload.date;
             state.sort = action.payload.sort;
         },
+        setAuthor(state, action) {
+            state.author = action.payload;
+        },
         clearFilter() {
             return initialState
         }
@@ -22,4 +26,4 @@ const filterSlice = createSlice({
 })
 
 export default filterSlice.reducer;
-export const { setFilters, clearFilter } = filterSlice.actions; 
+export const { setFilters, setAuthor, clearFilter } = filterSlice.actions; 

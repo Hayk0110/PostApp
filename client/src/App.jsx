@@ -28,7 +28,11 @@ function App() {
 
   const queryFilters = queryString({ ...filter });
 
-  const mainQuery = `/posts/?category=${queryFilters.category}&date=${queryFilters.date}&sort=${queryFilters.sort}`;
+  let mainQuery = `/posts/?category=${queryFilters.category}&date=${queryFilters.date}&sort=${queryFilters.sort}`;
+
+  if(filter.author){
+    mainQuery = mainQuery + `&author=${filter.author}`
+  }
 
   useEffect(() => {
     if (token !== null) {

@@ -2,44 +2,27 @@ import React, { useEffect, useState } from "react";
 
 import Feed from "../components/feed/Feed";
 import Loading from "../UI/loading/Loading";
+import { useDispatch } from "react-redux";
+import { setAuthor } from "../store/reducers/FilterReducer";
 
 const FeedContainer = ({ posts, loading }) => {
+  const dispatch = useDispatch();
 
-  const [input, setInput] = useState("");
-  const [pool, setPool] = useState([]);
-
-  const updatePool = (newComments, id) => {
-    
-    const updatedPool = pool.map((post) => {
-      if (post.id === id) {
-        post.comments = newComments;
-      }
-
-      return post;
-    });
-
-    setPool(updatedPool);
-  }
-
-  const changeInput = (value) => {
-    if(value.trim() === " "){
-      return
-    }
-    setInput(value);
+  const onSearch = (e) =>{
+    e.preventDefault();
+    console.log(e.target[0].value)
+    dispatch(setAuthor(e.target[0].value))
   }
 
   if(loading){
     return (<Loading />)
   }
 
-
   return (
     <Feed
         {...{
-          input,
           posts,
-          changeInput,
-          updatePool,
+          onSearch
         }}
       />
   )
