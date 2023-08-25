@@ -17,7 +17,7 @@ export const login = createAsyncThunk("auth/login", async (credentials) => {
             return { user: res, accessToken: credentials.token }
         } else {
             res = await AuthService.login(credentials);
-            Cookie.set("access-token", res.accessToken);
+            Cookie.set("accessToken", res.accessToken);
             return res;
         }
     } catch (err) {
@@ -29,7 +29,7 @@ export const login = createAsyncThunk("auth/login", async (credentials) => {
 export const logout = createAsyncThunk("auth/logout", async () => {
     try {
         await AuthService.logout();
-        Cookie.remove("access-token");
+        Cookie.remove("accessToken");
     } catch (err) {
         throw err.message
     }

@@ -2,11 +2,11 @@ import axios from "axios";
 import Cookie from "js-cookie"
 
 const api = axios.create({
-    baseURL: "http://localhost:8800/api/"
+    baseURL: "http://localhost:8800/api/",
 });
 
 api.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer ${Cookie.get("token")}`
+    config.headers.Authorization = `Bearer ${Cookie.get("accessToken")}`
     return config;
 })
 
