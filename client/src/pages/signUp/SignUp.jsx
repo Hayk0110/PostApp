@@ -1,55 +1,82 @@
-import React, { useContext, useState } from "react";
-import './signUp.scss'
+import React from "react";
+import "./signUp.scss";
+
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+
 import AuthService from "../../services/AuthService";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignUpSchema } from "../../Schemas";
+
 import Logo from "../../UI/logo/Logo";
 import MyButton from "../../UI/button/MyButton";
-import MyInput from "../../UI/input/MyInput";
-import useInput from "../../hooks/useInput";
+import ErrorText from "../../UI/errorText/ErrorText";
 
 const SignUp = () => {
-  const email = useInput("");
-  const password = useInput("");
-  const passwordAgain = useInput("");
-  
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    formState,
+    getValues,
+  } = useForm({
+    mode: "all",
+    defaultValues: {
+      email: "",
+      password: "",
+      confirm: "",
+    },
+    resolver: zodResolver(SignUpSchema),
+  });
 
   const navigate = useNavigate();
 
-  const onRegister = (e) => {
-    e.preventDefault();
-    if (password.value !== passwordAgain.value) {
-      console.error("password is not the same");
-      return;
-    }
-    AuthService.register({ email: email.value, password: password.value });
-    navigate("/login");
+  const onRegister = () => {
+    AuthService.register({
+      email: getValues("email"),
+      password: getValues("password"),
+    }).catch((e) => console.log(e));
+    navigate("/");
   };
 
   return (
     <div className="register">
       <Logo />
-      <form className="inputForm">
-        <MyInput
-          className="sign"
+      <form className="inputForm" onSubmit={handleSubmit(onRegister)}>
+        {errors.email && <ErrorText value={errors.email.message} />}
+        <input
+          className={errors.email ? "sign error" : "sign"}
           type="text"
           placeholder="Your Email"
-          {...email}
+          {...register("email")}
         />
-        <MyInput
-        className="sign"
+        {errors.password && <ErrorText value={errors.password.message} />}
+        <input
+          className={errors.password ? "sign error" : "sign"}
           type="password"
           placeholder="Your Password"
-          {...password}
+          {...register("password")}
         />
-        <MyInput
-        className="sign"
+        {errors.confirm && <ErrorText value={errors.confirm.message} />}
+        <input
+          className={errors.confirm ? "sign error" : "sign"}
           type="password"
-          placeholder="Again Password"
-          {...passwordAgain}
+          placeholder="Password Again"
+          {...register("confirm")}
         />
-        <MyButton onClick={onRegister}>Sign Up</MyButton>
+        <MyButton
+          onClick={onRegister}
+          type="submit"
+          disabled={!formState.isValid}
+        >
+          Sign Up
+        </MyButton>
       </form>
-      <Link to='/signin' className="loginLink" >Log into your Account</Link>
+      <p className="attencion">After Sign up please verify your email</p>
+      <Link to="/signin" className="loginLink">
+        Log into your Account
+      </Link>
     </div>
   );
 };

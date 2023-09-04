@@ -4,7 +4,9 @@ const initialState = {
     category: "all",
     date: "all",
     sort: "by date",
-    author: ""
+    author: "",
+    title: "",
+    search: "by author"
 }
 
 const filterSlice = createSlice({
@@ -12,12 +14,18 @@ const filterSlice = createSlice({
     initialState,
     reducers: {
         setFilters(state, action) {
-            state.category = action.payload.category;
-            state.date = action.payload.date;
-            state.sort = action.payload.sort;
-        },
+            Object.assign(state, action.payload);
+          },
         setAuthor(state, action) {
             state.author = action.payload;
+        },
+        setTitile(state, action){
+            state.title = action.payload;
+        },
+        setSearch(state, action){
+            state.author = "";
+            state.title = "";
+            state.search = action.payload;
         },
         clearFilter() {
             return initialState
@@ -26,4 +34,4 @@ const filterSlice = createSlice({
 })
 
 export default filterSlice.reducer;
-export const { setFilters, setAuthor, clearFilter } = filterSlice.actions; 
+export const { setFilters, setAuthor, setTitile, setSearch,clearFilter } = filterSlice.actions; 

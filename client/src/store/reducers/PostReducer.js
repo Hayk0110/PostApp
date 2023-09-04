@@ -20,6 +20,33 @@ export const fetchPosts = createAsyncThunk("posts/fetch", async (params, { dispa
 
 })
 
+export const addPost = createAsyncThunk("posts/add", async (params, { dispatch, getState }) => {
+    try {
+        await PostService.addPost(params);
+        const { category, date, sort } = getState().filter
+        const { user } = getState().auth
+        dispatch(fetchPosts({ currentPage: 1, category, date, sort, author: user.email }))
+    } catch (err) {
+        throw err.message
+    }
+})
+
+export const updatePost = createAsyncThunk("posts/update", async (params, { dispatch, getState }) => {
+    try {
+        if(params.hasOwnProperty("published")){
+            await PostService.publishPost(params);
+        }else{
+            await PostService.updatePost(params);
+        }
+
+        const { category, date, sort } = getState().filter
+        const { user } = getState().auth
+        dispatch(fetchPosts({ currentPage: 1, category, date, sort, author: user.email }))
+    } catch (err) {
+        throw err.message
+    }
+})
+
 export const addComment = createAsyncThunk("posts/add-comment", async (payload, { getState }) => {
     try {
         const comment = await CommentService.addComment(payload);
@@ -57,7 +84,7 @@ export const updateComment = createAsyncThunk("posts/update-comment", async (pay
                 const updatedComments = post.comments.map(comment => {
                     if (comment.id == commentId) {
                         return updatedComment;
-                    }else{
+                    } else {
                         return comment;
                     }
                 });
@@ -79,7 +106,7 @@ export const deleteComment = createAsyncThunk("posts/delete-comment", async (pay
     try {
         const { postId, commentId, userId } = payload;
 
-        const comment = await CommentService.deleteComment(userId, commentId);
+        await CommentService.deleteComment(userId, commentId);
 
         const { posts } = getState().posts;
 

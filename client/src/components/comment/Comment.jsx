@@ -1,7 +1,13 @@
-import { AccountCircle, Delete, Star, Edit } from "@mui/icons-material";
+import React from "react";
 import "./comment.scss";
+
 import { format } from "timeago.js";
+
 import CommentEdit from "../commentEdit/CommentEdit";
+import ConfirmModal from "../confirmModal/ConfirmModal";
+
+import Modal from "../../UI/modal/Modal";
+import { AccountCircle, Delete, Star, Edit } from "@mui/icons-material";
 
 const Comment = ({
   comment,
@@ -10,26 +16,34 @@ const Comment = ({
   changeEdit,
   deleteComment,
   user,
+  navigateToAuthor,
+  modal
 }) => {
-
   return (
     <div className="comment">
       <div className="commentWrapper">
         <div className="commentUser">
-          <AccountCircle className="userIcon" />
-          <div>
-            <div className="username">
-              <p className="userEmail">{comment.user.email}</p>
-              <p className="rate">
-                <Star className="star" />
-                {comment?.rate}
-              </p>
+          <div
+            className="commentUserInfo"
+            onClick={() => navigateToAuthor(comment.user.email)}
+          >
+            <AccountCircle className="userIcon" />
+            <div>
+              <div className="username">
+                <p className="userEmail">{comment.user.email}</p>
+                <p className="rate">
+                  <Star className="star" />
+                  {comment?.rate}
+                </p>
+              </div>
+              <p className="date">{format(comment.createdAt)}</p>
             </div>
-
-            <p className="date">{format(comment.createdAt)}</p>
           </div>
           {user?.id == comment.user.id && (
-            <Edit className="edit" onClick={changeEdit} />
+            <div className="icons">
+              <Edit className="icon" onClick={changeEdit} />
+              <Delete className="icon" onClick={modal.onClick} />
+            </div>
           )}
         </div>
         <div className="commentContent">
@@ -45,13 +59,11 @@ const Comment = ({
           ) : (
             <pre className="commentText">{comment?.text}</pre>
           )}
-          {/* <div className="commentInfo">
-            <button className="btn" onClick={() => deleteCommentHandler(comment?.id)}>
-              <Delete />
-            </button>
-          </div> */}
         </div>
       </div>
+      <Modal modal={modal.clicked} changeModal={null}>
+            <ConfirmModal onClose={modal.onClick} onConfirm={()=>deleteComment(comment?.id)} text="Do you want to delete this comment?" />
+      </Modal>
     </div>
   );
 };

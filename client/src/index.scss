@@ -9,11 +9,33 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.root{
+  min-width: 1200px;
+  width: 100%;
+}
+
 .container {
   margin: 0 auto;
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
+.myInput {
+  display: block;
+  margin: 0 auto;
+  width: 500px;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 20px;
+  background: linear-gradient(45deg, #489e4e, #000);
+  color: white;
+
+  &::placeholder {
+    color: #dcd5d5;
+  }
+}

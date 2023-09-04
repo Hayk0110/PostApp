@@ -6,6 +6,7 @@ module.exports = function(result,req,res,next){
 
         if(!page || !limit){
             res.json(result)
+            return;
         }
 
         result.data = sortData(result.data, sort)

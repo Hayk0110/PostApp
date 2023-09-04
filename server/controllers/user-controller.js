@@ -8,7 +8,7 @@ class UserController {
         try {
             const { error } = validateSignup(req.body);
             if (error) {
-                return next(error.details)
+                next(error.details)
             }
 
             const { email, password } = req.body;
@@ -52,6 +52,16 @@ class UserController {
         }
     }
 
+    async activate(req, res, next) {
+        try {
+            const activationLink = req.params.link;
+             await userService.activate(activationLink);
+             return res.redirect(process.env.CLIENT_URL)
+        } catch (e) {
+            next(e);
+        }
+    }
+
     async refresh(req, res, next) {
         try {
             const { refreshToken } = req.cookies;
@@ -66,19 +76,16 @@ class UserController {
 
     async getUser(req, res, next) {
         try {
-            const { token, userId } = req.body;
-            let userData;
-            if (token) {
-                userData = await userService.getUser(token)
-            };
-            if (userId) {
-                userData = await userService.getUserById(userId)
-            }
+            const { refreshToken } = req.cookies;
+
+            const userData = await userService.getUser(refreshToken)
+
             return res.json(userData)
         } catch (e) {
             next(e)
         }
     }
+
 }
 
 module.exports = new UserController();

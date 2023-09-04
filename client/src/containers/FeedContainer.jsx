@@ -1,31 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  setAuthor,
+  setSearch,
+  setTitile,
+} from "../store/reducers/FilterReducer";
+import { changePage } from "../store/reducers/PaginationReducer";
 
 import Feed from "../components/feed/Feed";
+
 import Loading from "../UI/loading/Loading";
-import { useDispatch } from "react-redux";
-import { setAuthor } from "../store/reducers/FilterReducer";
 
 const FeedContainer = ({ posts, loading }) => {
+  const { author, title, search } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
-  const onSearch = (e) =>{
+  const onSearch = (e) => {
     e.preventDefault();
-    console.log(e.target[0].value)
-    dispatch(setAuthor(e.target[0].value))
-  }
+    dispatch(changePage(1));
+    if (search === "by author") {
+      dispatch(setAuthor(e.target[0].value));
+    } else {
+      dispatch(setTitile(e.target[0].value));
+    }
+  };
 
-  if(loading){
-    return (<Loading />)
+  const changeSearchType = (e) => {
+    dispatch(setSearch(e.target.value));
+  };
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (
     <Feed
-        {...{
-          posts,
-          onSearch
-        }}
-      />
-  )
-}
+      {...{
+        posts,
+        onSearch,
+        author,
+        title,
+        search,
+        changeSearchType,
+      }}
+    />
+  );
+};
 
-export default FeedContainer
+export default FeedContainer;

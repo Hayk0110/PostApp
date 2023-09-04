@@ -24,6 +24,14 @@
       &::placeholder {
         color: #aaa6a6;
       }
+
+      &.error{
+        border-color: red;
+
+        &::placeholder{
+          color: red;
+        }
+      }
     }
   }
 

@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./postReply.scss";
-import { Send, Star } from "@mui/icons-material";
+
 import MyButton from "../../UI/button/MyButton";
 import Stars from "../../UI/stars/Stars";
+
+import { Send } from "@mui/icons-material";
 
 const PostReply = ({ addComment, input, changeInput, rate, changeRate }) => {
   return (
@@ -14,7 +16,7 @@ const PostReply = ({ addComment, input, changeInput, rate, changeRate }) => {
         placeholder="Write your comment"
       ></textarea>
       <Stars rate={rate} changeRate={changeRate} />
-      <MyButton>
+      <MyButton type="submit">
         <Send />
       </MyButton>
     </form>

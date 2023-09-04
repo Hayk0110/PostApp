@@ -13,17 +13,52 @@
   .filterName {
     display: flex;
     justify-content: start;
+    align-items: flex-start;
     text-transform: capitalize;
   }
 
-  .buttons{
+  .buttons {
     display: flex;
     justify-content: space-between;
     padding: 10px;
 
-    .btn{
+    .btn {
+      padding: 8px 15px;
+      font-size: 15px;
+    }
+  }
+}
+
+@media (max-width: 1061px) {
+  .filters {
+    border: 1px solid;
+    width: 150px;
+    height: 100%;
+    padding: 5px;
+
+    h1,
+    h2 {
+      border-bottom: 1px solid;
+      text-transform: capitalize;
+    }
+
+    .filterName {
+      display: flex;
+      justify-content: start;
+      text-transform: capitalize;
+      font-size: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      gap: 10px;
+
+      .btn {
         padding: 8px 15px;
         font-size: 15px;
+      }
     }
   }
 }

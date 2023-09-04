@@ -1,6 +1,6 @@
 .postForm {
   display: flex;
-  width: 650px;
+  width: 100%;
   margin: 10px auto;
   justify-content: space-between;
   align-items: center;
@@ -19,6 +19,60 @@
 
     &::placeholder {
       color: #dcd5d5;
+    }
+  }
+}
+
+@media (max-width: 970px) {
+  .postForm {
+    display: flex;
+    width: 100%;
+    margin: 10px auto;
+    justify-content: space-between;
+    align-items: center;
+  
+    .postInput {
+      display: block;
+      width: 55%;
+      height: 110px;
+      resize: none;
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 10px;
+      font-size: 20px;
+      background: linear-gradient(45deg, #489e4e, #000);
+      color: white;
+  
+      &::placeholder {
+        color: #dcd5d5;
+      }
+    }
+  }
+}
+
+@media (max-width: 857px) {
+  .postForm {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+    justify-content: space-between;
+    align-items: center;
+  
+    .postInput {
+      display: block;
+      width: 40%;
+      height: 20%;
+      resize: none;
+      border: 2px solid black;
+      border-radius: 20px;
+      padding: 10px;
+      font-size: 15px;
+      background: linear-gradient(45deg, #489e4e, #000);
+      color: white;
+  
+      &::placeholder {
+        color: #dcd5d5;
+      }
     }
   }
 }

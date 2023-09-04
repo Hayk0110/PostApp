@@ -18,7 +18,10 @@
     "express-validator": "^7.0.1",
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.1",
-    "mongoose": "^7.3.4"
+    "mongoose": "^7.3.4",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.4",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

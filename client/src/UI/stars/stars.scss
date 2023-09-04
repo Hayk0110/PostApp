@@ -1,5 +1,8 @@
 .stars{
-
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .star{
         margin-left: 5px;
         cursor: pointer;
@@ -13,4 +16,43 @@
         color: orange;
     }
 
+}
+
+@media (max-width: 970px) {
+    .stars{
+
+        .star{
+            margin-left: 5px;
+            cursor: pointer;
+    
+            &:hover{
+                color: orange;
+            }
+        }
+    
+        .star.active{
+            color: orange;
+        }
+    
+    } 
+}
+
+@media (max-width: 857px) {
+    .stars{
+        width: 20%;
+        .star{
+            margin-left: 5px;
+            cursor: pointer;
+            font-size: 18px;
+    
+            &:hover{
+                color: orange;
+            }
+        }
+    
+        .star.active{
+            color: orange;
+        }
+    
+    } 
 }

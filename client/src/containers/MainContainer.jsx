@@ -1,20 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { fetchPosts } from "../store/reducers/PostReducer";
 
 import FeedContainer from "./FeedContainer";
-import { fetchPosts } from "../store/reducers/PostReducer";
 
 const MainContainer = () => {
   const { posts, loading } = useSelector((state) => state.posts);
   const { currentPage } = useSelector((state) => state.paginate);
-  const { category, date, sort, author } = useSelector((state) => state.filter);
+  const { category, date, sort, author, title } = useSelector(
+    (state) => state.filter
+  );
   const dispatch = useDispatch();
 
-
   useEffect(() => {
-    dispatch(fetchPosts({ currentPage, category, date, sort, author }));
-  }, []);
+    dispatch(
+      fetchPosts({
+        currentPage,
+        category,
+        date,
+        sort,
+        author,
+        title,
+        published: true,
+      })
+    );
+  }, [currentPage,category,date,sort,author,title]);
 
   return (
     <div className="container">

@@ -18,10 +18,10 @@ api.interceptors.response.use((config) => {
         originalRequest._isRetry = true;
         try {
             const res = await axios.get("http://localhost:8800/api/user/refresh", { withCredentials: true });
-            Cookie.set("token", res.data.accessToken);
+            Cookie.set("accessToken", res.data.accessToken);
             return api.request(originalRequest);
         } catch (error) {
-            console.log("UnAuthorized")
+            
         }
         throw error;
     }

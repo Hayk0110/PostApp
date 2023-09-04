@@ -1,12 +1,14 @@
 import React from "react";
-import './myInput.scss'
+import "./myInput.scss";
 
 const MyInput = ({
+  name = null,
   type = "text",
   className = "",
   placeholder = "",
   value = "",
   onChange = null,
+  onBlur = null,
 }) => {
   return (
     <input
@@ -15,6 +17,8 @@ const MyInput = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      onBlur={onBlur}
+      name={name}
     />
   );
 };

@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Comment from "../components/comment/Comment";
-import useInput from "../hooks/useInput";
+
 import { useDispatch, useSelector } from "react-redux";
+import useInput from "../hooks/useInput";
+import useToogle from "../hooks/useToogle";
+
 import { deleteComment } from "../store/reducers/PostReducer";
 
-const CommentContainer = ({ comment, postId }) => {
+import Comment from "../components/comment/Comment";
+
+const CommentContainer = ({ comment, postId, navigateToAuthor }) => {
   const [edit, setEdit] = useState(false);
   const editInput = useInput(comment.text);
+  const modal = useToogle(false);
 
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -21,9 +26,10 @@ const CommentContainer = ({ comment, postId }) => {
     dispatch(deleteComment({ postId, commentId: id, userId: user.id }));
   };
 
-  const changeEdit = () =>{
-    setEdit((prev) => !prev)
-  }
+  const changeEdit = () => {
+    setEdit((prev) => !prev);
+  };
+
   return (
     <Comment
       {...{
@@ -32,7 +38,9 @@ const CommentContainer = ({ comment, postId }) => {
         edit,
         changeEdit,
         deleteComment: deleteCommentHandler,
-        user
+        user,
+        navigateToAuthor,
+        modal,
       }}
     />
   );
