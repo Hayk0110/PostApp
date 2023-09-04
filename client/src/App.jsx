@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Route,
@@ -8,58 +8,53 @@ import {
   useNavigate,
   useLocation,
 } from "react-router-dom";
+
+import { login } from "./store/reducers/AuthReducer";
+
 import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
-import MainPage from "./pages/mainPage/MainPage";
-import Header from "./components/header/Header";
 import MyPosts from "./pages/myPosts/MyPosts";
-import Loading from "./UI/loading/Loading";
-import { queryString } from "./helpers";
-import { login } from "./store/reducers/AuthReducer";
+import MainPage from "./pages/mainPage/MainPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+
+import Header from "./components/header/Header";
+import Loading from "./UI/loading/Loading";
 
 function App() {
   const dispatch = useDispatch();
-  const { user, token, loading } = useSelector((state) => state.auth);
-  const filter = useSelector((state) => state.filter);
+  const { user, loading } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const queryFilters = queryString({ ...filter });
-
-  const mainQuery = `/posts/?category=${queryFilters.category}&date=${queryFilters.date}&sort=${queryFilters.sort}`;
+  useEffect(() => {
+    dispatch(login());
+  }, []);
 
   useEffect(() => {
-    if (token !== null) {
-      dispatch(login({ token }));
+    if (location.pathname === "/") {
+      navigate("/posts");
     }
-  }, [token]);
-
-  useEffect(() => {
-    if (location.pathname === "/" || location.pathname === "/posts") {
-      navigate(mainQuery);
-    }
-  }, [location, navigate]);
+  }, [navigate, location.pathname]);
 
   if (loading) {
     return <Loading />;
   }
 
-  const BasicLayout = () => {
+  const BasicLayout = React.memo(() => {
     return (
       <>
         <Header />
         <Outlet />
       </>
     );
-  };
+  });
 
   return (
     <Routes>
-      <Route path="/posts" element={<BasicLayout />}>
-        <Route path="" element={<MainPage />} />
-        <Route path=":id" element={<MyPosts />} />
+      <Route path="/" element={<BasicLayout />}>
+        <Route path="posts/" element={<MainPage />} />
+        <Route path="users/:author/posts" element={<MyPosts />} />
       </Route>
       <Route
         exact

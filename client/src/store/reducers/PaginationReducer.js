@@ -9,11 +9,13 @@ const initialState = {
 export const setPage = createAsyncThunk("paginate/setpage", async (payload, { getState, dispatch }) => {
     dispatch(changePage(payload));
     let params ={};
-    const {category, date, sort} = getState().filter
+    const {category, date, sort, author, title} = getState().filter
 
     params.category = category;
     params.date = date;
     params.sort = sort;
+    params.author = author;
+    params.title = title;
     params.currentPage = payload
 
     dispatch(fetchPosts(params));

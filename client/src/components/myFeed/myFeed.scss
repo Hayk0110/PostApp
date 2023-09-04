@@ -1,0 +1,21 @@
+.myFeed{
+    width: 70%;
+
+    .authorName{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .top{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .postWrapper{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

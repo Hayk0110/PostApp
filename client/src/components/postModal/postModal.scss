@@ -1,0 +1,68 @@
+.postModal {
+    background-color: #ffffff;
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    color: #000000;
+  
+    h3 {
+      margin-bottom: 20px;
+    }
+  
+    .inputs {
+      h5 {
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+  
+      .modalInput {
+        width: 450px;
+        font-size: 18px;
+        padding: 12px;
+        margin: 15px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: none;
+        color: black;
+        resize: none;
+        display: block;
+  
+        &::placeholder {
+          color: #aaa6a6;
+        }
+
+        &.error {
+          border-color: red;
+  
+          &::placeholder {
+            color: red;
+          }
+        }
+      }
+  
+      .modalSelect {
+        width: 350px;
+        font-size: 18px;
+        padding: 12px;
+        margin: 15px auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: none;
+        color: black;
+        resize: none;
+        display: block;
+      }
+    }
+  
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+  
+      // .cancel {
+      //   &:hover {
+      //     background-color: #e99494;
+      //   }
+      // }
+    }
+  }
+  

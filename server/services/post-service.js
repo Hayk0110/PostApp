@@ -39,8 +39,8 @@ class PostService {
     return postDto;
   }
 
-  async updatePost(id, title, text, category) {
-    const post = await Post.findByIdAndUpdate(id, { title, text, category });
+  async updatePost(id, title, text, category, published) {
+    const post = await Post.findByIdAndUpdate(id, { title, text, category, published });
 
     return post
   }

@@ -1,8 +1,9 @@
+const ApiError = require("../exceptions/api-error");
 const User = require("../models/User")
 
 module.exports = async function (req, res, next) {
     try {
-        const { author,title, category, date, sort, page, limit } = req.query;
+        const { author,title, category, date, sort, page, limit, published } = req.query;
         req.queryParams = {}
 
 
@@ -17,14 +18,14 @@ module.exports = async function (req, res, next) {
         // author query
         if (author) {
             const postAuthor = await User.findOne({ email: author });
+
             
-            if(postAuthor !== null){
-                req.queryParams.userId = postAuthor._id
-            }
+                req.queryParams.userId = postAuthor?._id
+            
         }
 
         if (title) {
-            req.queryParams.title = title
+            req.queryParams.title = {$regex: title};
         }
 
 
@@ -75,9 +76,13 @@ module.exports = async function (req, res, next) {
             };
         }
 
+        if(published){
+            req.queryParams.published = true
+        }
+
         req.queryParams.sort = sort;
 
-        return next()
+        next()
 
     } catch (e) {
         console.log(e)

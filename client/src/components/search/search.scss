@@ -3,5 +3,11 @@
     justify-content: center;
     align-items: center;
     width: 600px;
-    margin: 0 auto;
+}
+
+@media (max-width: 857px) {
+    .searchForm{
+        width: 500px;
+        gap: 10px;
+    }
 }

@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import {
+  addComment as addCommentRedux,
+  updatePost as updatePostRedux,
+} from "../store/reducers/PostReducer";
 
 import Post from "../components/post/Post";
 
-import { asc, desc } from "../constants";
-import { sortBy } from "../helpers";
-import { addComment as addCommentRedux } from "../store/reducers/PostReducer";
-
-const PostContainer = ({ post, updatePool }) => {
+const PostContainer = ({ post }) => {
   const [input, setInput] = useState("");
-  const [comments, setComments] = useState(post.comments);
-  const [count, setCount] = useState(0);
   const [rate, setRate] = useState(5);
+  const location = useLocation();
 
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -40,39 +40,50 @@ const PostContainer = ({ post, updatePool }) => {
     }
 
     dispatch(
-      addCommentRedux({ userId: user.id, postId: post.id, text: input, rate: rate })
+      addCommentRedux({
+        userId: user.id,
+        postId: post.id,
+        text: input,
+        rate: rate,
+      })
     );
 
     setInput("");
     setRate(5);
   };
 
-  const sortComments = () => {
-    if (comments.length <= 1) {
-      return;
-    } else if (count % 2 === 1) {
-      sortBy(comments, "rate", asc);
-      setCount(count + 1);
-    } else {
-      sortBy(comments, "rate", desc);
-      setCount(count + 1);
-    }
+  const changeRate = (value) => {
+    setRate(value);
   };
 
-  const changeRate = (value) => {
-    setRate(value)
+  const updatePost = (title, text, category) => {
+    dispatch(
+      updatePostRedux({ title, text, postCategory: category, postId: post.id })
+    );
+  };
+
+  const tooglePublish = () => {
+    dispatch(updatePostRedux({ postId: post.id, published: !post.published }));
+  };
+
+  const navigateToAuthor = (email) => {
+    navigate(`/users/${email}/posts`);
   };
 
   return (
     <Post
       {...{
         post,
-        sortComments,
         addComment,
         changeInput,
         input,
         rate,
-        changeRate
+        changeRate,
+        location,
+        updatePost,
+        tooglePublish,
+        user,
+        navigateToAuthor,
       }}
     />
   );

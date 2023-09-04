@@ -1,32 +1,122 @@
 .feed {
-  padding: 30px;
-  border-radius: 20px;
+  padding: 20px 0;
+  width: 90%;
 
   .top {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+
+    .search {
+      width: 800px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .searchSelect {
+        font-size: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: black;
+      }
+    }
   }
 
   .postWrapper {
+    width: 100%;
     margin-top: 20px;
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 60px;
+
+    .posts{
+      width: 80%;
+    }
   }
 }
 
-/* .search {
-  display: block;
-  margin: 0 auto;
-  width: 500px;
-  border: 2px solid black;
-  border-radius: 20px;
-  padding: 10px;
-  font-size: 20px;
-  background: linear-gradient(45deg, #489e4e, #000);
-  color: white;
+@media (max-width: 1075px) {
+  .feed {
+    padding: 10px 0;
+    width: 100%;
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .search {
+        width: 800px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .searchSelect {
+          font-size: 15px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          color: black;
+        }
+      }
+    }
+
+    .postWrapper {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+
+      .posts{
+        width: 70%;
+      }
+    }
+  }
 }
 
-.search::placeholder {
-  color: #dcd5d5;
-} */
+
+@media (max-width: 857px) {
+  .feed {
+    padding: 10px 0;
+    width: 100%;
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .search {
+        width: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        .searchSelect {
+          font-size: 15px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          color: black;
+        }
+      }
+    }
+
+    .postWrapper {
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+
+      .posts{
+        width: 70%;
+      }
+    }
+  }
+}

@@ -1,18 +1,23 @@
 import React from "react";
 import "./search.scss";
 
+import useInput from "../../hooks/useInput";
+
 import MyInput from "../../UI/input/MyInput";
 import MyButton from "../../UI/button/MyButton";
 
 import { Search as SearchIcon } from "@mui/icons-material";
-import useInput from "../../hooks/useInput";
 
-const Search = ({onSubmit = null}) => {
-  const input = useInput("");
+const Search = ({ onSubmit, placeholder = "", value }) => {
+  const input = useInput(value ? value : "");
 
   return (
-    <form className="searchForm" value={input.value} onSubmit={onSubmit}>
-      <MyInput placeholder="Search" value={input.value} onChange={input.onChange} />
+    <form className="searchForm" onSubmit={onSubmit}>
+      <MyInput
+        placeholder={placeholder}
+        value={input.value}
+        onChange={input.onChange}
+      />
       <MyButton>
         <SearchIcon />
       </MyButton>

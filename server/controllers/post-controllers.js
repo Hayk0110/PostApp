@@ -42,10 +42,10 @@ class PostController {
             if (error) {
                 return next(error.details);
             }
-
+            
             const { id } = req.params
-            const { title, text, category } = req.body
-            const updatedPost = await postService.updatePost(id, title, text, category)
+            const { title, text, category, published } = req.body
+            const updatedPost = await postService.updatePost(id, title, text, category, published)
             res.json(updatedPost)
         } catch (e) {
             next(e);

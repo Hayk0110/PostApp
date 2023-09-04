@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import "./filters.scss";
-import MyButton from "../../UI/button/MyButton";
+
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+
 import { clearFilter, setFilters } from "../../store/reducers/FilterReducer";
 import { setPage } from "../../store/reducers/PaginationReducer";
 
+import MyButton from "../../UI/button/MyButton";
+
 const Filters = () => {
   const checkboxGroups = [
-    { groupName: "category", items: ["all", "football", "news", "coding"] },
+    {
+      groupName: "category",
+      items: ["all", "football", "news", "coding", "something else"],
+    },
     { groupName: "date", items: ["all", "today", "this week", "this month"] },
     { groupName: "sort", items: ["by date", "by rate"] },
   ];
 
   const filter = useSelector((state) => state.filter);
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const [checkedItems, setCheckedItems] = useState(filter);
   const dispatch = useDispatch();
@@ -35,20 +39,10 @@ const Filters = () => {
       })
     );
     dispatch(setPage(1));
-    setSearchParams({
-      category: checkedItems.category,
-      date: checkedItems.date,
-      sort: checkedItems.sort,
-    });
   };
 
   const clearAll = () => {
     dispatch(clearFilter());
-    setSearchParams({
-      category: checkboxGroups[0].items[0],
-      date: checkboxGroups[1].items[0],
-      sort: checkboxGroups[2].items[0],
-    });
   };
 
   return (

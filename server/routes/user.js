@@ -3,10 +3,11 @@ const userController = require("../controllers/user-controller")
 const validateMiddleware = require("../middlewares/validate-middleware");
 
 
-router.post("/registration", userController.registration ,validateMiddleware);
-router.post("/login", userController.login, validateMiddleware);
+router.post("/registration", userController.registration);
+router.post("/login",  userController.login );
 router.post("/logout", userController.logout);
+router.get("/activate/:link", userController.activate);
 router.get("/refresh", userController.refresh);
-router.post("/", userController.getUser);
+router.get("/", userController.getUser);
 
 module.exports = router;

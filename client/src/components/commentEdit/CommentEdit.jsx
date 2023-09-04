@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import "./commentEdit.scss";
-import MyButton from "../../UI/button/MyButton";
-import useToogle from "../../hooks/useToogle";
-import ConfirmModal from "../confirmModal/ConfirmModal";
-import Stars from "../../UI/stars/Stars";
+
 import { useDispatch } from "react-redux";
+import useToogle from "../../hooks/useToogle";
+
 import { updateComment } from "../../store/reducers/PostReducer";
+
+import ConfirmModal from "../confirmModal/ConfirmModal";
+
+import MyButton from "../../UI/button/MyButton";
+import Stars from "../../UI/stars/Stars";
+import Modal from "../../UI/modal/Modal";
 
 const CommentEdit = ({
   value,
@@ -49,9 +54,13 @@ const CommentEdit = ({
           Edit
         </MyButton>
       </div>
-      {modal.clicked && (
-        <ConfirmModal onClose={modal.onClick} onConfirm={onConfirm} />
-      )}
+      <Modal modal={modal.clicked} changeModal={null}>
+        <ConfirmModal
+          onClose={modal.onClick}
+          onConfirm={onConfirm}
+          text="Do you want to confirm your changes?"
+        />
+      </Modal>
     </>
   );
 };

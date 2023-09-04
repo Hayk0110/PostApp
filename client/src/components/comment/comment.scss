@@ -13,13 +13,18 @@
 
     .commentUser {
       display: flex;
-      gap: 10px;
+      justify-content: space-between;
 
-      .userIcon {
-        font-size: 40px;
-      }
+      .commentUserInfo {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        
+        .userIcon {
+          font-size: 40px;
+        }
 
-      div {
         .username {
           display: flex;
 
@@ -47,9 +52,14 @@
         }
       }
 
-      .edit {
-        margin-left: auto;
-        cursor: pointer;
+      .icons{
+        display: flex;
+        gap: 10px;
+        .icon {
+          margin-left: auto;
+          cursor: pointer;
+        }
+
       }
     }
 
@@ -63,6 +73,89 @@
       .commentInfo {
         display: flex;
         margin-right: 20px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 857px) {
+  .comment {
+    margin-left: 30px;
+    line-height: 20px;
+  
+    .commentWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      border: 2px solid #fff;
+      border-radius: 20px;
+      margin: 20px 0;
+      padding: 20px 10px;
+  
+      .commentUser {
+        display: flex;
+        gap: 10px;
+  
+        .commentUserInfo {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          cursor: pointer;
+          
+          .userIcon {
+            font-size: 24px;
+          }
+  
+          .username {
+            display: flex;
+  
+            .userEmail {
+              font-size: 14px;
+            }
+  
+            .rate {
+              width: 50%;
+              // margin: 0 20px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 3px;
+              font-size: 13px;
+  
+              .star {
+                font-size: 17px;
+                color: orange;
+              }
+            }
+          }
+  
+          .date {
+            font-size: 10px;
+            color: #d0d0d0;
+          }
+        }
+        .icons{
+          display: flex;
+        gap: 5px;
+          .icon {
+            margin-left: auto;
+            cursor: pointer;
+          }
+        }
+      }
+  
+      .commentContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 30px;
+        margin-top: 20px;
+  
+        .commentInfo {
+          display: flex;
+          margin-right: 20px;
+        }
       }
     }
   }

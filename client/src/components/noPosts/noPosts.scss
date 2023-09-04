@@ -1,0 +1,17 @@
+.noPosts{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    opacity: 0.4;
+
+    .warning{
+        font-size: 150px;
+    }
+
+    p{
+        font-size: 45px;
+    }
+}

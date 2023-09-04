@@ -1,48 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  setAuthor,
+  setSearch,
+  setTitile,
+} from "../store/reducers/FilterReducer";
+import { changePage } from "../store/reducers/PaginationReducer";
 
 import Feed from "../components/feed/Feed";
+
 import Loading from "../UI/loading/Loading";
 
 const FeedContainer = ({ posts, loading }) => {
+  const { author, title, search } = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
 
-  const [input, setInput] = useState("");
-  const [pool, setPool] = useState([]);
-
-  const updatePool = (newComments, id) => {
-    
-    const updatedPool = pool.map((post) => {
-      if (post.id === id) {
-        post.comments = newComments;
-      }
-
-      return post;
-    });
-
-    setPool(updatedPool);
-  }
-
-  const changeInput = (value) => {
-    if(value.trim() === " "){
-      return
+  const onSearch = (e) => {
+    e.preventDefault();
+    dispatch(changePage(1));
+    if (search === "by author") {
+      dispatch(setAuthor(e.target[0].value));
+    } else {
+      dispatch(setTitile(e.target[0].value));
     }
-    setInput(value);
-  }
+  };
 
-  if(loading){
-    return (<Loading />)
-  }
+  const changeSearchType = (e) => {
+    dispatch(setSearch(e.target.value));
+  };
 
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Feed
-        {...{
-          input,
-          posts,
-          changeInput,
-          updatePool,
-        }}
-      />
-  )
-}
+      {...{
+        posts,
+        onSearch,
+        author,
+        title,
+        search,
+        changeSearchType,
+      }}
+    />
+  );
+};
 
-export default FeedContainer
+export default FeedContainer;

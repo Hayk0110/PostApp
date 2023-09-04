@@ -14,17 +14,12 @@ export default class AuthService{
     }
 
     static logout = async () =>{
-        const res = await api.post("/user/logout");
+        const res = await api.post("/user/logout", null, {withCredentials: true});
         return res.data;
     }
 
-    static getUser = async (token)=>{
-        const user = await api.post("/user/", token)
-        return user.data;
-    }
-
-    static getUserById = async (userId) =>{
-        const user = await api.post("/user/",{userId})
+    static refresh = async ()=>{
+        const user = await api.get("/user/refresh", {withCredentials: true});
         return user.data;
     }
 }

@@ -9,7 +9,7 @@ const signinSchema = Joi.object({
 const signupSchema = Joi.object({
     email: Joi.string().empty().email().required(),
     password: Joi.string().empty().min(6).max(24).required(),
-    passwordAgain: Joi.string().empty().required().valid(Joi.ref('password')),
+    // passwordAgain: Joi.string().empty().required().valid(Joi.ref('password')),
 })
 
 exports.validateSignin = validator(signinSchema)

@@ -20,19 +20,42 @@
       border-radius: 5px;
       background: none;
       color: black;
+
       &::placeholder {
         color: #aaa6a6;
+      }
+
+      &.error {
+        border-color: red;
+
+        &::placeholder {
+          color: red;
+        }
       }
     }
   }
 
+  .attencion{
+    font-weight: 700;
+    margin: 20px 0;
+    font-size: 20px;
+  }
   .loginLink {
-    margin-top: 20px;
     color: #489e4e;
     text-decoration: none;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
+}
+
+@media (max-width: 400px) {
+  .register{
+    
+    .attencion{
+      font-size: 16px;
+    }
+  }
+  
 }

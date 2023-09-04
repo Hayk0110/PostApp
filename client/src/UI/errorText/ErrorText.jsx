@@ -1,10 +1,8 @@
-import React from 'react'
-import "./errorText.css"
+import React from "react";
+import "./errorText.scss";
 
-const ErrorText = ({value,error}) => {
-  return (
-    <p>{error.find((err) => err.path === value).message}</p>
-  )
-}
+const ErrorText = ({ value }) => {
+  return <p className="errorText">{value}</p>;
+};
 
-export default ErrorText
+export default ErrorText;

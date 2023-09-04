@@ -7,6 +7,7 @@ module.exports = class PostDto{
     text;
     category;
     user;
+    published
     comments;
     createdAt;
 
@@ -16,6 +17,7 @@ module.exports = class PostDto{
         this.text = model.text;
         this.category = model.category
         this.user = new UserDto(model.userId);
+        this.published = model.published;
         this.comments = model.comments.map(comment => new CommentDto(comment));
         this.createdAt = model.createdAt
     }

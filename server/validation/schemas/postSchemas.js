@@ -12,6 +12,7 @@ const updatedPostSchema = Joi.object({
     title: Joi.string().empty().max(50),
     text: Joi.string().empty().max(240),
     category: Joi.string().empty(),
+    published: Joi.boolean().empty()
 })
 
 exports.validateAddPost = validator(addPostSchema)

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./stars.scss";
+
 import { Star } from "@mui/icons-material";
 
-const Stars = ({rate, changeRate}) => {
+const Stars = ({ rate, changeRate }) => {
   const [hover, setHover] = useState(0);
   const [mouseEntered, setMouseEntered] = useState(false);
 
