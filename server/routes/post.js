@@ -7,5 +7,5 @@ const queryMiddleware = require("../middlewares/query-middleware");
 
 router.get("/", queryMiddleware, postController.getPosts, paginationMiddleware);
 router.post("/", authMiddleware,postController.addPost);
-router.put("/:id", postController.updatePost);
+router.put("/:id", authMiddleware,postController.updatePost);
 module.exports = router;
